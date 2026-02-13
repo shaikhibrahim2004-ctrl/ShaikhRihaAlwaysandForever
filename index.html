@@ -266,44 +266,46 @@ p {
 </section>
 
 <script>
-window.onload = function() {
-    let currentSection = 1;
-    const totalSections = 6;
+window.addEventListener('DOMContentLoaded', function() {
+    try {
+        let currentSection = 1;
+        const totalSections = 6;
 
-    // START OVERLAY
-    const startOverlay = document.getElementById('startOverlay');
-    startOverlay.addEventListener('click', () => {
-        startOverlay.style.display = 'none';
-        document.getElementById('section1').classList.add('active');
-    });
+        const startOverlay = document.getElementById('startOverlay');
+        startOverlay.addEventListener('click', () => {
+            startOverlay.style.display = 'none';
+            document.getElementById('section1').classList.add('active');
+        });
 
-    // NEXT SECTION FUNCTION
-    function nextSection() {
-        document.getElementById('section' + currentSection).classList.remove('active');
-        currentSection++;
-        if (currentSection > totalSections) currentSection = totalSections;
+        function nextSection() {
+            document.getElementById('section' + currentSection).classList.remove('active');
+            currentSection++;
+            if (currentSection > totalSections) currentSection = totalSections;
 
-        document.getElementById('section' + currentSection).classList.add('active');
+            document.getElementById('section' + currentSection).classList.add('active');
 
-        if (currentSection === totalSections) {
-            document.getElementById('musicFinal').play().catch(()=>{});
+            if (currentSection === totalSections) {
+                const audio = document.getElementById('musicFinal');
+                if (audio) audio.play().catch(()=>{});
+            }
         }
+        window.nextSection = nextSection;
+
+        // SLIDESHOW
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slideshow img');
+        function showSlides() {
+            slides.forEach(img => img.classList.remove('active'));
+            if (slides[slideIndex]) slides[slideIndex].classList.add('active');
+            slideIndex = (slideIndex + 1) % slides.length;
+            setTimeout(showSlides, 2000);
+        }
+        if (slides.length) showSlides();
+
+    } catch(e) {
+        console.error('JS error:', e);
     }
-    window.nextSection = nextSection;
-
-    // SLIDESHOW
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slideshow img');
-
-    function showSlides() {
-        slides.forEach(img => img.classList.remove('active'));
-        slides[slideIndex].classList.add('active');
-        slideIndex = (slideIndex + 1) % slides.length;
-        setTimeout(showSlides, 2000);
-    }
-
-    showSlides();
-};
+});
 </script>
 
 </body>
