@@ -103,11 +103,32 @@ p {
     white-space: pre-line;
 }
 </style>
+    #startOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-size: 28px;
+    cursor: pointer;
+}
 </head>
+<script>
+const music = document.getElementById('musicStart');
+const overlay = document.getElementById('startOverlay');
 
+overlay.addEventListener('click', () => {
+    music.play().catch(() => {});
+    overlay.style.display = 'none';
+});
+</script>
 <body>
 
-<audio id="musicStart" src="music/start.mp3" loop preload="auto"></audio>
+<audio id="musicStart" <div id="startOverlay">
+    ❤️ Tap to begin ❤️
+</div> src="music/start.mp3" loop preload="auto"></audio>
     <script>
 const music = document.getElementById('musicStart');
 let musicStarted = false;
@@ -328,26 +349,10 @@ Always, with my whole heart. ✨🌹
     </div>
 </section>
 
-<script>
-let currentSection = 1;
-const totalSections = 6;
-
-// SECTION NAVIGATION + MUSIC
-function nextSection() {
-    document.getElementById('section' + currentSection).classList.remove('active');
-
- <script>
-let currentSection = 1;
-const totalSections = 6;
-
-function nextSection() {
-    // STOP music when leaving section 1
-    if (currentSection === 1) {
-        const music = document.getElementById('musicStart');
-        music.pause();
-        music.currentTime = 0;
-    }
-
+if (currentSection === 1) {
+    music.pause();
+    music.currentTime = 0;
+}
     // Hide current section
     document.getElementById('section' + currentSection).classList.remove('active');
 
