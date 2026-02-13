@@ -115,36 +115,8 @@ p {
     cursor: pointer;
 }
 </head>
-<script>
-const music = document.getElementById('musicStart');
-const overlay = document.getElementById('startOverlay');
 
-overlay.addEventListener('click', () => {
-    music.play().catch(() => {});
-    overlay.style.display = 'none';
-});
-</script>
 <body>
-
-<audio id="musicStart" <div id="startOverlay">
-    ❤️ Tap to begin ❤️
-</div> src="music/start.mp3" loop preload="auto"></audio>
-    <script>
-const music = document.getElementById('musicStart');
-let musicStarted = false;
-
-function startMusicOnce() {
-    if (!musicStarted) {
-        music.play().catch(()=>{});
-        musicStarted = true;
-        document.removeEventListener('click', startMusicOnce);
-        document.removeEventListener('keydown', startMusicOnce);
-    }
-}
-
-document.addEventListener('click', startMusicOnce);
-document.addEventListener('keydown', startMusicOnce);
-</script>
 
 <section id="section1" class="active">
     <h2>For Riha ❤️</h2>
@@ -347,27 +319,7 @@ Always you.
 Always us.
 Always, with my whole heart. ✨🌹
     </div>
-</section>
 
-if (currentSection === 1) {
-    music.pause();
-    music.currentTime = 0;
-}
-    // Hide current section
-    document.getElementById('section' + currentSection).classList.remove('active');
-
-    // Move forward
-    currentSection++;
-    if (currentSection > totalSections) currentSection = totalSections;
-
-    // Show next section
-    document.getElementById('section' + currentSection).classList.add('active');
-
-    // Final music only in section 6
-    if (currentSection === 6) {
-        document.getElementById('musicFinal').play().catch(()=>{});
-    }
-}
 </script>
     currentSection++;
     if (currentSection > totalSections) currentSection = totalSections;
