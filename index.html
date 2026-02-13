@@ -102,8 +102,10 @@ p {
     line-height: 1.8;
     white-space: pre-line;
 }
-</style>
-    #startOverlay {
+<style>
+/* ...existing CSS... */
+
+#startOverlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.85);
@@ -114,6 +116,7 @@ p {
     font-size: 28px;
     cursor: pointer;
 }
+</style>
 </head>
 
 <body>
@@ -320,7 +323,12 @@ Always us.
 Always, with my whole heart. ✨🌹
     </div>
 
-</script>
+<script>
+let currentSection = 1;
+const totalSections = 6;
+
+function nextSection() {
+    document.getElementById('section' + currentSection).classList.remove('active');
     currentSection++;
     if (currentSection > totalSections) currentSection = totalSections;
 
