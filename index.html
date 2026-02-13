@@ -108,6 +108,22 @@ p {
 <body>
 
 <audio id="musicStart" src="music/start.mp3" loop></audio>
+    <script>
+const music = document.getElementById('musicStart');
+let musicStarted = false;
+
+function startMusicOnce() {
+    if (!musicStarted) {
+        music.play().catch(()=>{});
+        musicStarted = true;
+        document.removeEventListener('click', startMusicOnce);
+        document.removeEventListener('keydown', startMusicOnce);
+    }
+}
+
+document.addEventListener('click', startMusicOnce);
+document.addEventListener('keydown', startMusicOnce);
+</script>
 
 <section id="section1" class="active">
     <h2>For Riha ❤️</h2>
