@@ -107,7 +107,7 @@ p {
 
 <body>
 
-<audio id="musicStart" src="music/start.mp3" loop></audio>
+<audio id="musicStart" src="music/start.mp3" loop preload="auto"></audio>
     <script>
 const music = document.getElementById('musicStart');
 let musicStarted = false;
@@ -336,14 +336,34 @@ const totalSections = 6;
 function nextSection() {
     document.getElementById('section' + currentSection).classList.remove('active');
 
+ <script>
+let currentSection = 1;
+const totalSections = 6;
+
+function nextSection() {
+    // STOP music when leaving section 1
     if (currentSection === 1) {
-        document.getElementById('musicStart').play().catch(()=>{});
+        const music = document.getElementById('musicStart');
+        music.pause();
+        music.currentTime = 0;
     }
 
-    if (currentSection === 2) {
-        document.getElementById('musicStart').pause();
-    }
+    // Hide current section
+    document.getElementById('section' + currentSection).classList.remove('active');
 
+    // Move forward
+    currentSection++;
+    if (currentSection > totalSections) currentSection = totalSections;
+
+    // Show next section
+    document.getElementById('section' + currentSection).classList.add('active');
+
+    // Final music only in section 6
+    if (currentSection === 6) {
+        document.getElementById('musicFinal').play().catch(()=>{});
+    }
+}
+</script>
     currentSection++;
     if (currentSection > totalSections) currentSection = totalSections;
 
