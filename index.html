@@ -309,33 +309,38 @@ Always, with my whole heart. ✨🌹
     </div>
 
 <script>
-let currentSection = 1;
-const totalSections = 6;
+window.onload = function() {
+    let currentSection = 1;
+    const totalSections = 6;
 
-function nextSection() {
-    document.getElementById('section' + currentSection).classList.remove('active');
-    currentSection++;
-    if (currentSection > totalSections) currentSection = totalSections;
+    function nextSection() {
+        document.getElementById('section' + currentSection).classList.remove('active');
+        currentSection++;
+        if (currentSection > totalSections) currentSection = totalSections;
 
-    document.getElementById('section' + currentSection).classList.add('active');
+        document.getElementById('section' + currentSection).classList.add('active');
 
-    if (currentSection === totalSections) {
-        document.getElementById('musicFinal').play().catch(()=>{});
+        if (currentSection === totalSections) {
+            document.getElementById('musicFinal').play().catch(()=>{});
+        }
     }
-}
 
-// SLIDESHOW
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slideshow img');
+    // Make nextSection available globally for button onclick
+    window.nextSection = nextSection;
 
-function showSlides() {
-    slides.forEach(img => img.classList.remove('active'));
-    slides[slideIndex].classList.add('active');
-    slideIndex = (slideIndex + 1) % slides.length;
-    setTimeout(showSlides, 2000);
-}
+    // SLIDESHOW
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slideshow img');
 
-showSlides();
+    function showSlides() {
+        slides.forEach(img => img.classList.remove('active'));
+        slides[slideIndex].classList.add('active');
+        slideIndex = (slideIndex + 1) % slides.length;
+        setTimeout(showSlides, 2000);
+    }
+
+    showSlides();
+};
 </script>
 
 </body>
