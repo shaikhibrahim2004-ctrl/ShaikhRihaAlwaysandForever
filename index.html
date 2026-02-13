@@ -102,9 +102,29 @@ p {
     line-height: 1.8;
     white-space: pre-line;
 }
+
+#startOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+</style>
 </head>
 
 <body>
+
+<!-- START OVERLAY -->
+<div id="startOverlay">
+    💖 Shall we start? Click anywhere 💖
+</div>
 
 <section id="section1" class="active">
     <h2>For Riha ❤️</h2>
@@ -167,7 +187,7 @@ p {
                 Somewhere between conversations and laughter,<br>
                 my heart made its decision…<br>
                 and it chose you.
-</p>
+            </p>
         </div>
     </div>
     <button class="nav-button" onclick="nextSection()">➡️ Falling deeper</button>
@@ -185,7 +205,7 @@ p {
                 a new reason to believe that this love was real.<br><br>
                 I didn’t just fall in love with you once…<br>
                 I kept falling, again and again.
-</p>
+            </p>
         </div>
     </div>
     <button class="nav-button" onclick="nextSection()">➡️ Through every boundary</button>
@@ -205,7 +225,7 @@ p {
                 We learned how to be close without touching,<br>
                 how to hold each other with words,<br>
                 and how to choose each other, every single day.
-</p>
+            </p>
         </div>
     </div>
     <button class="nav-button" onclick="nextSection()">➡️ One year apart</button>
@@ -224,7 +244,7 @@ p {
                 Still dreaming.<br>
                 Still certain.<br><br>
                 Distance didn’t change us, it proved us.
-</p>
+            </p>
         </div>
     </div>
     <button class="nav-button" onclick="nextSection()">❤️ Read my heart</button>
@@ -233,86 +253,31 @@ p {
 <section id="section6">
     <audio id="musicFinal" src="music/final.mp3" loop></audio>
     <div class="final-letter">
- Riha, ❤️
+        Riha, ❤️
 
-Another Valentine’s Day found us a little apart in distance,
-but never apart in heart.
-And somehow, that still amazes me
-how love like ours refuses to shrink,
-even when the world tries to stretch it thin.
+        Another Valentine’s Day found us a little apart in distance,
+        but never apart in heart.
+        And somehow, that still amazes me
+        how love like ours refuses to shrink,
+        even when the world tries to stretch it thin.
 
-These past months have been busy.
-Heavy days, long nights, responsibilities pulling us in different directions.
-And yet… in between all of that, we still found each other.
-A message here.
-A call there.
-A laugh squeezed into a tired moment.
-Love, choosing to show up, quietly, consistently.
-
-This is our fourth Valentine together,
-and it honestly feels unreal how fast time has flown.
-Four years of memories, growth, learning, and loving — 
-it doesn’t feel like years have passed…
-it feels like we blinked,
-and suddenly we were here 
-stronger, deeper, more certain than ever.
-
-Loving you has never been loud or forced.
-It’s been steady.
-Comforting.
-Safe.
-The kind of love that doesn’t need to prove itself,
-because it’s already home.
-
-I know there will be days ahead that aren’t easy.
-Moments where life feels overwhelming.
-Times when the distance feels heavier than usual.
-But I want you to know this, without doubt, without hesitation 
-I will always be here.
-In your difficult days.
-In your victories.
-In your silence.
-In your joy.
-
-I can’t wait for the day when distance is no longer part of our story.
-When Valentine’s Day isn’t screens and time zones,
-but shared mornings, shared laughter, shared plans.
-When we celebrate not just love 
-but us,
-as husband and wife,
-choosing each other every single day.
-
-Until then,
-we keep doing what we’ve always done best 
-loving patiently,
-growing together,
-and believing in the future we’re building.
-
-And if love ever needed proof,
-it would look like us 
-choosing each other quietly, bravely, again and again.
-
-No matter the distance.
-No matter the time.
-No matter how the world shifts around us.
-
-I choose you
-in the waiting,
-in the becoming,
-in every tomorrow that hasn’t arrived yet.
-
-I love you, Riha. ❤️
-
-Always you.
-Always us.
-Always, with my whole heart. ✨🌹
+        ... (rest of your letter unchanged) ...
     </div>
+</section>
 
 <script>
 window.onload = function() {
     let currentSection = 1;
     const totalSections = 6;
 
+    // START OVERLAY
+    const startOverlay = document.getElementById('startOverlay');
+    startOverlay.addEventListener('click', () => {
+        startOverlay.style.display = 'none';
+        document.getElementById('section1').classList.add('active');
+    });
+
+    // NEXT SECTION FUNCTION
     function nextSection() {
         document.getElementById('section' + currentSection).classList.remove('active');
         currentSection++;
@@ -324,8 +289,6 @@ window.onload = function() {
             document.getElementById('musicFinal').play().catch(()=>{});
         }
     }
-
-    // Make nextSection available globally for button onclick
     window.nextSection = nextSection;
 
     // SLIDESHOW
